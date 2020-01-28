@@ -12,7 +12,11 @@ def InitGame():
     pygame.display.set_caption('GuguMelon\'s Mouse')
     return screen
 def main():
-    screen=InitGame()
+    pygame.init()
+    pygame.mixer.init()
+    screen=pygame.display.set_mode(config.ScreenSize)
+    pygame.display.set_caption('GuguMelon\'s Mouse')
+    # screen=InitGame()
     pygame.mixer.music.load(config.BgmPath)
     pygame.mixer.music.play(-1)
     audios={
@@ -29,9 +33,15 @@ def main():
     hammer=Hammer(config.HammerImagePaths,(500,200))
     clock=pygame.time.Clock()
     score=0
+    # print(score)
     flag=False
+    # TimeRemain=40
+    # print(TimeRemain)
+    Timetime=round((61000+pygame.time.get_ticks()))
+    # print('Timetime='+str(Timetime))
     while True:
-        TimeRemain=round((6000-pygame.time.get_ticks())/1000.)
+        TimeRemain=round((Timetime-pygame.time.get_ticks())/1000.)
+        print(TimeRemain)
         if TimeRemain==40 and not flag:
             HolePos=random.choice(config.HolePosition)
             Mole.reset()
